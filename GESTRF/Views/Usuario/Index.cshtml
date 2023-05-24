@@ -1,0 +1,84 @@
+@model IEnumerable<GESTRF.Models.Usuario>
+@{
+    ViewData["Title"] = "Index";
+    ViewData["TitlePage"] = "Usuário";
+}
+@*<p>
+        <a asp-action="Create">Criar Novo Estudante</a>
+    </p>*@
+
+<form asp-action="Index" method="get">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="filtro" class="form-control float-right" placeholder="Search" value="@ViewData["filtroAtual"]">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default" value="Procurar">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a asp-action="Index" asp-route-ordem="@ViewData["NomeParam"]" asp-route-filtroAtual="@ViewData["filtroAtual"]">Codigo</a>
+                                </th>
+                                <th>
+                                    <a asp-action="Index" asp-route-ordem="@ViewData["NomeParam"]" asp-route-filtroAtual="@ViewData["filtroAtual"]">Nome</a>
+                                </th>
+                                <th>
+                                    <a asp-action="Index" asp-route-ordem="@ViewData["NomeParam"]" asp-route-filtroAtual="@ViewData["filtroAtual"]">Email</a>
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UsuarioId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-default btn-sm" data-container="body" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <a asp-action="Details" asp-route-id="@item.UsuarioId" button type="button" class="btn btn-default btn-sm" data-container="body" title="Detalhar">
+                                            <i class="fas fa-hand-paper"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-default btn-sm" data-container="body" title="Excluir">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                        @*<a asp-action="Edit" asp-route-id="@item.UsuarioID">Editar</a>
+                                        <a asp-action="Details" asp-route-id="@item.UsuarioId">Detalhes</a>
+                                        <a asp-action="Delete" asp-route-id="@item.UsuarioID">Deletar</a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</form>

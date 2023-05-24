@@ -1,0 +1,26 @@
+﻿@model GESTRF.Models.Usuario
+@{
+    ViewData["Title"] = "Details";
+    ViewData["TitlePage"] = "Detalhamento";
+}
+<div class="col-md-4">
+    <p>
+        @Html.DisplayFor(model => model.UsuarioId)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Nome)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Senha)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Email)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Username)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Perfil)
+    </p>
+
+</div>
