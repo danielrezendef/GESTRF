@@ -1,6 +1,7 @@
 ﻿using GESTRF.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,19 +30,24 @@ namespace GESTRF.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Logar(string username, string senha, bool manterlogado)
+        public async Task<IActionResult> Logar(string username, string senha, string lembrar)
         {
             Usuario usuario = _contexto.Usuario.AsNoTracking().FirstOrDefault(x => x.Username == username && x.Senha == senha);
+            bool _lembrar = false;
+            if (lembrar == "on")
+                _lembrar = true;
+
 
             if (usuario != null)
             {
                 int usuarioId = usuario.UsuarioId;
                 string nome = usuario.Nome;
-
+                string image = usuario.Image;
                 List<Claim> direitosAcesso = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,usuarioId.ToString()),
-                    new Claim(ClaimTypes.Name,nome)
+                    new Claim(ClaimTypes.Name,nome),
+                    new Claim(ClaimTypes.Thumbprint,image)
                 };
 
                 var identity = new ClaimsIdentity(direitosAcesso, "Identity.Login");
@@ -50,14 +56,14 @@ namespace GESTRF.Controllers
                 await HttpContext.SignInAsync(userPrincipal,
                     new AuthenticationProperties
                     {
-                        IsPersistent = manterlogado,
+                        IsPersistent = _lembrar,
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
                 return RedirectToAction("Index", "Home");
             }
 
-            return Json(new { Msg = "Usuário não encontrado! Verifique suas credenciais!" });
+            return RedirectToAction("Index", "Login");
         }
 
         public async Task<IActionResult> Logout()
