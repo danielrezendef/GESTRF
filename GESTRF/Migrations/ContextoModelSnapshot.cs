@@ -20,13 +20,13 @@ namespace GESTRF.Migrations
                 {
           
                      b.Property<int>("UsuarioId").ValueGeneratedOnAdd().HasColumnType("int");
-                     b.Property< string>("Nome").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");
-                     b.Property< string>("Username").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4"); 
+                     b.Property<string>("Nome").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");
+                     b.Property<string>("Username").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4"); 
                      b.Property<string>("Senha").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");
                      b.Property<string>("Email").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");
-                     b.Property<string>("Perfil").IsRequired()  .HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");           
-
-                    
+                     b.Property<string>("Perfil").IsRequired().HasMaxLength(50).HasColumnType("varchar(50) CHARACTER SET utf8mb4");
+                     b.Property<string>("Image").IsRequired().HasMaxLength(300).HasColumnType("varchar(300) CHARACTER SET utf8mb4");
+                      
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
