@@ -94,5 +94,28 @@ namespace GESTRF.Controllers
             return View(user);
         }
 
+        public async Task<IActionResult> Create([Bind("UsuarioId,Nome,Username,Senha,Email,Perfil,Image")] Usuario usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(usuario);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Logar o erro (descomente a variável ex e escreva um log
+                ModelState.AddModelError("", "Não foi possível salvar. " +
+                    "Tente novamente, e se o problema persistir " +
+                    "chame o suporte.");
+            }
+            return View(usuario);
+        }
+
+
+
     }
 }
