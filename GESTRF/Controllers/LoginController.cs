@@ -36,18 +36,17 @@ namespace GESTRF.Controllers
             bool _lembrar = false;
             if (lembrar == "on")
                 _lembrar = true;
-
+     
 
             if (usuario != null)
             {
                 int usuarioId = usuario.UsuarioId;
                 string nome = usuario.Nome;
-                string image = usuario.Image;
                 List<Claim> direitosAcesso = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,usuarioId.ToString()),
                     new Claim(ClaimTypes.Name,nome),
-                    new Claim(ClaimTypes.Thumbprint,image)
+                    new Claim(ClaimTypes.Role,usuario.Perfil)
                 };
 
                 var identity = new ClaimsIdentity(direitosAcesso, "Identity.Login");
@@ -60,7 +59,7 @@ namespace GESTRF.Controllers
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home",$"{usuario.Nome.ToString()}");
             }
 
             return RedirectToAction("Index", "Login");
