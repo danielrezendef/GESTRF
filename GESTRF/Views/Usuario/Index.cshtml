@@ -55,9 +55,9 @@
                                         @Html.DisplayFor(modelItem => item.Email)
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-default btn-sm" data-container="body" title="Editar">
+                                        <a asp-action="Edit" asp-route-id="@item.UsuarioId" button type="button" class="btn btn-default btn-sm" data-container="body" title="Editar">
                                             <i class="fas fa-edit"></i>
-                                        </button>
+                                        </a>
                                         <a asp-action="Details" asp-route-id="@item.UsuarioId" button type="button" class="btn btn-default btn-sm" data-container="body" title="Detalhar">
                                             <i class="fas fa-info"></i>
                                         </a>

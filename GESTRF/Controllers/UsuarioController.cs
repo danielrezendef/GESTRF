@@ -115,7 +115,49 @@ namespace GESTRF.Controllers
             return View(usuario);
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public async Task<IActionResult> EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var atualizarUsuario = await _context.Usuario.SingleOrDefaultAsync(s => s.UsuarioId == id);
+            if (await TryUpdateModelAsync<Usuario>(
+                atualizarUsuario,
+                "",
+                s => s.Nome, s => s.Username, s => s.Perfil, s => s.Senha, s => s.Email, s => s.Image))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return View(atualizarUsuario);
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Logar o erro (descomente a variável ex e escreva um log
+                    ModelState.AddModelError("", "Não foi possível salvar. " +
+                        "Tente novamente, e se o problema persistir " +
+                        "chame o suporte.");
+                }
+            }
+            return View(atualizarUsuario);
+        }
 
     }
 }
