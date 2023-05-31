@@ -59,7 +59,7 @@ namespace GESTRF.Controllers
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
-                return RedirectToAction("Index", "Home",$"{usuario.Nome.ToString()}");
+                return RedirectToAction("Index", "Home");
             }
 
             return RedirectToAction("Index", "Login");

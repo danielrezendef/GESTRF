@@ -47,7 +47,7 @@ $.extend( DataTable.ext.buttons, {
 				node = n;
 			},
 			text: function ( dt ) {
-				return dt.i18n( 'buttons.colvis', 'Column visibility' );
+				return dt.i18n( 'buttons.colvis', 'Colunas' );
 			},
 			className: 'buttons-colvis',
 			closeButton: false,
