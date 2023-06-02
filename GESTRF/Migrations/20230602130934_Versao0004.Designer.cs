@@ -3,6 +3,7 @@ using System;
 using GESTRF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GESTRF.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20230602130934_Versao0004")]
+    partial class Versao0004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,26 +88,6 @@ namespace GESTRF.Migrations
 
                     b.ToTable("Usuario", (string)null);
                 });
-
-            modelBuilder.Entity("GESTRF.Models.Mensagem", b =>
-            {
-                b.Property<int>("MensagemId")
-                       .ValueGeneratedOnAdd()
-                       .HasColumnType("int");
-
-                b.Property<string>("ChamadoFk")
-                   .HasColumnType("longtext");
-
-                b.Property<string>("Msg")
-                    .HasColumnType("longtext");
-
-                b.HasKey("MensagemId");
-
-                b.ToTable("Mensagem", (string)null);
-            });
-
-
-
 #pragma warning restore 612, 618
         }
     }

@@ -6,6 +6,9 @@ namespace GESTRF
     public class Contexto : DbContext
     {
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Chamado> Chamado { get; set; }
+        public DbSet<Mensagem> Mensagem { get; set; }
+
 
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)
@@ -18,6 +21,8 @@ namespace GESTRF
             base.OnModelCreating(builder);
 
             builder.Entity<Usuario>().ToTable("Usuario");
+            builder.Entity<Chamado>().ToTable("Chamado");
+            builder.Entity<Mensagem>().ToTable("Mensagem");
 
             //builder.Entity<Usuario>(x =>
             //{
