@@ -24,6 +24,12 @@ namespace GESTRF
             builder.Entity<Chamado>().ToTable("Chamado");
             builder.Entity<Mensagem>().ToTable("Mensagem");
 
+
+            builder.Entity<Chamado>(x =>
+            {
+                x.Ignore(y => y.Alteracao);
+            });
+
             //builder.Entity<Usuario>(x =>
             //{
             //    x.Property(y => y.Nome).HasMaxLength(50).IsRequired();

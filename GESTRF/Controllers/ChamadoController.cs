@@ -23,7 +23,11 @@ namespace GESTRF.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return View();
+
+                var chamado = from Chamado in _context.Chamado
+                              select Chamado;
+
+                return View(chamado);
             }
             return RedirectToAction("Index", "Login");
         }

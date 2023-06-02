@@ -28,6 +28,19 @@ namespace GESTRF
                 context.Usuario.Add(s);
             }
             context.SaveChanges();
+
+            var chamado = new Chamado[]
+           {
+            new Chamado{Assunto="Formatação" ,Tecnico="Filipe" ,Setor="Faturamento", DataCri=DateTime.Now,Status = "Aberto"},
+           };
+            foreach (Chamado s in chamado)
+            {
+                context.Chamado.Add(s);
+            }
+            context.SaveChanges();
+
+
+
         }
 
 
