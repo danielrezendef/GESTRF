@@ -12,10 +12,13 @@
         <thead>
             <tr>
                 <th>Assunto</th>
+                <th>Setor</th>
                 <th>T&eacutecnico</th>
                 <th>Data</th>
                 <th>Ultima Altera&ccedil&atildeo</th>
                 <th>Status</th>
+                <th>Ajustes</th>
+
             </tr>
         </thead>
 
@@ -42,32 +45,18 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.ChamadoId"*@ <button type="button" class="btn btn-default btn-sm" data-container="body" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        @*</a>*@
+                        @*<a asp-action="Details" asp-route-id="@item.ChamadoId"*@ <button type="button" class="btn btn-default btn-sm" data-container="body" title="Detalhar">
+                            <i class="fas fa-info"></i>
+                        </button>
+                        @*</a>*@
+                    </td>
                 </tr>
             }
         </tbody>
-        @*
-        <tbody>
-        <tr>
-        <td>Trident</td>
-        <td>
-        Internet
-        Explorer 4.0
-        </td>
-        <td>Win 95+</td>
-        <td> 4</td>
-        <td>X</td>
-        </tr>
-        <tr>
-        <td>Trident</td>
-        <td>
-        Internet
-        Explorer 5.0
-        </td>
-        <td>Win 95+</td>
-        <td>5</td>
-        <td>C</td>
-        </tr>
-        </tbody>
-        *@
     </table>
 </div>

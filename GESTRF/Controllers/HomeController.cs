@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GESTRF.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GESTRF.Controllers
 {

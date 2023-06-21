@@ -36,8 +36,19 @@ namespace GESTRF
                     config.Cookie.Name = "Identity.Login";
                     config.LoginPath = "/Login";
                     config.AccessDeniedPath = "/Home";
-                    config.ExpireTimeSpan = TimeSpan.FromHours(1);
+                    config.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 });
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddRazorPages();
         }
@@ -62,6 +73,8 @@ namespace GESTRF
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

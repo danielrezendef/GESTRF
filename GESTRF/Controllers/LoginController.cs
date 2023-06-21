@@ -1,5 +1,6 @@
 ﻿using GESTRF.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,10 @@ namespace GESTRF.Controllers
     public class LoginController : Controller
     {
         private readonly Contexto _contexto;
+        const string SessionNome = "Nome";
+        const string SessionEmail = "Email";
+        const string SessionImage = "Image";
+        const string SessionPerfil = "Perfil";
 
         public LoginController(Contexto contexto)
         {
@@ -36,7 +41,6 @@ namespace GESTRF.Controllers
             bool _lembrar = false;
             if (lembrar == "on")
                 _lembrar = true;
-     
 
             if (usuario != null)
             {
@@ -58,6 +62,12 @@ namespace GESTRF.Controllers
                         IsPersistent = _lembrar,
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
+
+                HttpContext.Session.SetString("SessionNome", usuario.Nome);
+                HttpContext.Session.SetString("SessionEmail", usuario.Email);
+                HttpContext.Session.SetString("SessionImage", usuario.Image);
+                HttpContext.Session.SetString("SessionPerfil", usuario.Perfil);
+
 
                 return RedirectToAction("Index", "Home");
             }

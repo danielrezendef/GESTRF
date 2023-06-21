@@ -15,17 +15,20 @@ namespace GESTRF.Models
         {
             get
             {
+                if (Status != "Aberto")
+                    return Alteracao;
+
                 string result = string.Empty;
                 TimeSpan op = DateTime.Now - DataCri;
 
                 if ((int)op.TotalDays > 0)
-                    result = string.Format($"{(int)op.TotalDays} Dias");
+                    result += string.Format($"{(int)op.TotalDays} Dias ");
 
-                if ((int)op.TotalHours > 0)
-                    result = string.Format($"{(int)op.TotalHours} Horas");
+                if ((int)op.TotalHours > 0 && (int)op.TotalHours < 24 && (int)op.TotalDays == 0)
+                    result += string.Format($"{(int)op.TotalHours} Horas ");
 
-                if ((int)op.TotalMinutes > 0)
-                    result = string.Format($"{(int)op.TotalMinutes} Minutos");
+                if ((int)op.TotalMinutes > 0 && (int)op.TotalMinutes < 60 && (int)op.TotalDays == 0)
+                    result += string.Format($"{(int)op.TotalMinutes} Minutos");
 
                 return result;
             }
