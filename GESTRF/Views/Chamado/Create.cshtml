@@ -1,0 +1,88 @@
+﻿@model GESTRF.Models.Chamado
+@{
+    ViewData["Title"] = "Create";
+    ViewData["TitlePage"] = "Novo";
+}
+<form asp-controller="Chamado" asp-action="Create" method="post">
+    <div class="col-md-6">
+        @* <div class="form-group">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input name="Nome" type="text" class="form-control" placeholder="Nome">
+        </div>
+        </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
+                    <select name="Setor" class="form-control select2" style="width: 100%;" required autofocus>
+                        <option selected="selected"></option>
+                        <option>Compras</option>
+                        <option>Contábil</option>
+                        <option>Fiscal</option>
+                        <option>Financeiro</option>
+                        <option>Folha</option>
+                        <option>Produção</option>
+                        <option>Romaneio</option>
+                        <option>Vendas</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-pen-to-square"></i></span>
+                    <input name="Assunto" type="text" class="form-control" placeholder="Assunto" required autofocus>
+                </div>
+            </div>
+        </div>
+        @*<div class="form-group">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input name="Tecnico" type="text" class="form-control" placeholder="Tecnico">
+        </div>
+        </div>
+        </div>*@
+
+        @*        <div class="form-group">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
+        <select name="Perfil" class="form-control select2" style="width: 100%;">
+        <option selected="selected">User</option>
+        <option>Admin</option>
+        </select>
+        </div>
+        </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                    <input name="Doc" type="text" class="form-control" placeholder="Upload Imagem">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <div class="input-group mb-2">
+                    <button type="submit" class="btn btn-block btn-success">Criar </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <a asp-action="Index" type="button" class="btn btn-block btn-secondary "><i class="fa-solid fa-circle-left"></i> Voltar </a>
+            </div>
+        </div>
+    </div>
+</form>
+

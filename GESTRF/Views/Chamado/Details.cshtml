@@ -1,0 +1,34 @@
+﻿@model GESTRF.Models.Chamado
+@{
+    ViewData["Title"] = "Details";
+    ViewData["TitlePage"] = "Detalhamento";
+}
+<div class="col-md-4">
+    <p>
+        @Html.DisplayFor(model => model.ChamadoId)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Setor)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Assunto)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.DataCri)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Alteracao)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Tecnico)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Status)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.Doc)
+    </p>
+</div>
+<div class="col-md-2">
+    <a asp-action="Index" type="button" class="btn btn-block btn-secondary">Voltar</a>
+</div>

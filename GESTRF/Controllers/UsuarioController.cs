@@ -87,9 +87,7 @@ namespace GESTRF.Controllers
             //    .SingleOrDefaultAsync(m => m.EstudanteID == id);
 
             if (user == null)
-            {
                 return NotFound();
-            }
 
             return View(user);
         }

@@ -10,7 +10,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input name="Nome" type="text" class="form-control" placeholder="Nome">
+                    <input name="Nome" type="text" class="form-control" placeholder="Nome" required autofocus>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-at"></i></span>
-                    <input name="Username" type="text" class="form-control" placeholder="Username">
+                    <input name="Username" type="text" class="form-control" placeholder="Username" required autofocus>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input name="Senha" type="password" class="form-control" placeholder="Senha">
+                    <input name="Senha" type="password" class="form-control" placeholder="Senha" required autofocus>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input name="Email" type="text" class="form-control" placeholder="Email">
+                    <input name="Email" type="text" class="form-control" placeholder="Email" required autofocus>
                 </div>
             </div>
         </div>
@@ -46,8 +46,9 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
-                    <select name="Perfil" class="form-control select2" style="width: 100%;">
-                        <option selected="selected">User</option>
+                    <select name="Perfil" class="form-control select2" style="width: 100%;" required autofocus required autofocus>
+                        <option selected="selected"></option>
+                        <option>User</option>
                         <option>Admin</option>
                     </select>
                 </div>

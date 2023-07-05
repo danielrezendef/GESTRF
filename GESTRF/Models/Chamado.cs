@@ -11,28 +11,30 @@ namespace GESTRF.Models
         public DateTime DataCri { get; set; }
         public string Status { get; set; }
         public string? Doc { get; set; }
-        public string Alteracao
-        {
-            get
-            {
-                if (Status != "Aberto")
-                    return Alteracao;
+        public string? Alteracao { get; set; }
 
-                string result = string.Empty;
-                TimeSpan op = DateTime.Now - DataCri;
+        //public string? Alteracao
+        //{
+        //    get
+        //    {
+        //        if (Status != "Aberto")
+        //            return Alteracao;
 
-                if ((int)op.TotalDays > 0)
-                    result += string.Format($"{(int)op.TotalDays} Dias ");
+        //        string result = string.Empty;
+        //        TimeSpan op = DateTime.Now - DataCri;
 
-                if ((int)op.TotalHours > 0 && (int)op.TotalHours < 24 && (int)op.TotalDays == 0)
-                    result += string.Format($"{(int)op.TotalHours} Horas ");
+        //        if ((int)op.TotalDays > 0)
+        //            result += string.Format($"{(int)op.TotalDays} Dias ");
 
-                if ((int)op.TotalMinutes > 0 && (int)op.TotalMinutes < 60 && (int)op.TotalDays == 0)
-                    result += string.Format($"{(int)op.TotalMinutes} Minutos");
+        //        if ((int)op.TotalHours > 0 && (int)op.TotalHours < 24 && (int)op.TotalDays == 0)
+        //            result += string.Format($"{(int)op.TotalHours} Horas ");
 
-                return result;
-            }
-            set { }
-        }
+        //        if ((int)op.TotalMinutes > 0 && (int)op.TotalMinutes < 60 && (int)op.TotalDays == 0)
+        //            result += string.Format($"{(int)op.TotalMinutes} Minutos");
+
+        //        return result;
+        //    }
+        //    set {  }
+        //}
     }
 }
