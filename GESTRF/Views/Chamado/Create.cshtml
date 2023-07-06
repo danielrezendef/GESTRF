@@ -5,15 +5,7 @@
 }
 <form asp-controller="Chamado" asp-action="Create" method="post">
     <div class="col-md-6">
-        @* <div class="form-group">
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-user"></i></span>
-        <input name="Nome" type="text" class="form-control" placeholder="Nome">
-        </div>
-        </div>
-        </div>*@
-
+        <label>Setor</label>
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -32,36 +24,17 @@
                 </div>
             </div>
         </div>
-
+        <label>Mensagem</label>
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-pen-to-square"></i></span>
-                    <input name="Assunto" type="text" class="form-control" placeholder="Assunto" required autofocus>
+                    @*<input name="Assunto" type="text" class="form-control" placeholder="Mensagem" required autofocus>*@
+                    <textarea name="Assunto" class="form-control" rows="3" placeholder="Enter ..." required autofocus></textarea>
                 </div>
             </div>
         </div>
-        @*<div class="form-group">
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-        <input name="Tecnico" type="text" class="form-control" placeholder="Tecnico">
-        </div>
-        </div>
-        </div>*@
-
-        @*        <div class="form-group">
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
-        <select name="Perfil" class="form-control select2" style="width: 100%;">
-        <option selected="selected">User</option>
-        <option>Admin</option>
-        </select>
-        </div>
-        </div>
-        </div>*@
-
+        <label>Upload de Arquivo</label>
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -70,19 +43,18 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-3">
-                <div class="input-group mb-2">
-                    <button type="submit" class="btn btn-block btn-success">Criar </button>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">
-                <a asp-action="Index" type="button" class="btn btn-block btn-secondary "><i class="fa-solid fa-circle-left"></i> Voltar </a>
-            </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-block btn-success">Criar </button>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <a asp-action="Index" type="button" class="btn btn-block btn-secondary "><i class="fa-solid fa-circle-left"></i> Voltar </a>
+        </div>
+    </div>
+
 </form>
 

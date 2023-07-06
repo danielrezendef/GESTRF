@@ -94,23 +94,31 @@ namespace GESTRF.Controllers
 
         public async Task<IActionResult> Create([Bind("UsuarioId,Nome,Username,Senha,Email,Perfil,Image")] Usuario usuario)
         {
-            try
+
+            if (User.Identity.IsAuthenticated)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    _context.Add(usuario);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    if (ModelState.IsValid)
+                    {
+                        _context.Add(usuario);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
                 }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Logar o erro (descomente a variável ex e escreva um log
+                    ModelState.AddModelError("", "Não foi possível salvar. " +
+                        "Tente novamente, e se o problema persistir " +
+                        "chame o suporte.");
+                }
+                return View(usuario);
             }
-            catch (DbUpdateException /* ex */)
+            else
             {
-                //Logar o erro (descomente a variável ex e escreva um log
-                ModelState.AddModelError("", "Não foi possível salvar. " +
-                    "Tente novamente, e se o problema persistir " +
-                    "chame o suporte.");
+                return RedirectToAction("Index", "Login");
             }
-            return View(usuario);
         }
 
         public async Task<IActionResult> Edit(int? id)
