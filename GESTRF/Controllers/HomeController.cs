@@ -39,6 +39,7 @@ namespace GESTRF.Controllers
             {
                 var usuario = from usu in _contexto.Usuario
                               select usu;
+
                 return View(usuario);
             }
            

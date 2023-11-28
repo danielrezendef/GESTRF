@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 using GESTRF.Models;
 using GESTRF;
 using Microsoft.AspNetCore.Authorization;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Reflection.PortableExecutable;
+using Microsoft.AspNetCore.Routing.Template;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+
 
 namespace GESTRF.Controllers
 {
     public class UsuarioController : Controller
     {
         private readonly Contexto _context;
-
+        private readonly IWebHostEnvironment webHostEnvironment;
         public UsuarioController(Contexto context)
         {
             _context = context;
@@ -89,21 +98,35 @@ namespace GESTRF.Controllers
             if (user == null)
                 return NotFound();
 
+
+            string? img = string.Empty;
+            if (user.Image != null)
+            {
+                img = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.Image));
+            }
+            else
+                img = string.Format(@"../../dist/img/user.jpg");
+
+            ViewBag.imageDataUrl = img;
+
             return View(user);
         }
-
-        public async Task<IActionResult> Create([Bind("UsuarioId,Nome,Username,Senha,Email,Perfil,Image")] Usuario usuario)
+        //[Bind("UsuarioId,Nome,Username,Senha,Email,Perfil,Image,Foto")]
+        public async Task<IActionResult> Create(Usuario usuario)
         {
-
             if (User.Identity.IsAuthenticated)
             {
                 try
                 {
                     if (ModelState.IsValid)
                     {
+                        var arqImage = new BinaryReader(usuario.Foto.OpenReadStream());
+                        usuario.Image = arqImage.ReadBytes((int)usuario.Foto.Length);
+                        var base64img = Convert.ToBase64String(usuario.Image);
+
                         _context.Add(usuario);
                         await _context.SaveChangesAsync();
-                        return RedirectToAction("Index");
+                        return RedirectToAction(nameof(Index));
                     }
                 }
                 catch (DbUpdateException /* ex */)
@@ -121,6 +144,73 @@ namespace GESTRF.Controllers
             }
         }
 
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
+        //    if (usuario == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    string? img = string.Empty;
+        //    if (usuario.Image != null)
+        //    {
+        //        img = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(usuario.Image));
+        //    }
+        //    else
+        //        img = string.Format(@"../../dist/img/user.jpg");
+
+        //    ViewBag.imageDataUrl = img;
+
+
+        //    return View(usuario);
+        //}
+
+        //[HttpPost, ActionName("Edit")]
+        //public async Task<IActionResult> EditPost(Usuario usu, int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var atualizarUsuario = await _context.Usuario.SingleOrDefaultAsync(s => s.UsuarioId == id);
+        //    var arqImage = new BinaryReader(usu.Foto.OpenReadStream());
+        //    atualizarUsuario.Image = arqImage.ReadBytes((int)usu.Foto.Length);
+        //    if (await TryUpdateModelAsync<Usuario>(
+        //        atualizarUsuario,
+        //        "",
+        //        s => s.Nome, s => s.Username, s => s.Perfil, s => s.Senha, s => s.Email, s => s.Image))
+        //    {
+        //        try
+        //        {
+        //            await _context.SaveChangesAsync();
+        //            return View(atualizarUsuario);
+        //        }
+        //        catch (DbUpdateException /* ex */)
+        //        {
+        //            //Logar o erro (descomente a variável ex e escreva um log
+        //            ModelState.AddModelError("", "Não foi possível salvar. " +
+        //                "Tente novamente, e se o problema persistir " +
+        //                "chame o suporte.");
+        //        }
+        //    }
+        //    string? img = string.Empty;
+        //    if (atualizarUsuario.Image != null)
+        //    {
+        //        img = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(atualizarUsuario.Image));
+        //    }
+        //    else
+        //        img = string.Format(@"../../dist/img/user.jpg");
+
+        //    ViewBag.imageDataUrl = img;
+        //    return View(atualizarUsuario);
+        //}
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -137,13 +227,20 @@ namespace GESTRF.Controllers
         }
 
         [HttpPost, ActionName("Edit")]
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<IActionResult> EditPost(int? id, Usuario _user)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var atualizarUsuario = await _context.Usuario.SingleOrDefaultAsync(s => s.UsuarioId == id);
+            if (_user.Foto != null)
+            {
+                var arqImage = new BinaryReader(_user.Foto.OpenReadStream());
+                _user.Image = arqImage.ReadBytes((int)_user.Foto.Length);
+            }
+
+            atualizarUsuario = _user;
             if (await TryUpdateModelAsync<Usuario>(
                 atualizarUsuario,
                 "",
@@ -164,6 +261,5 @@ namespace GESTRF.Controllers
             }
             return View(atualizarUsuario);
         }
-
     }
 }

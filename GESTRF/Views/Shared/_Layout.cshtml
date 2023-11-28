@@ -145,16 +145,17 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
                 </li>*@
-
+                @{var img = HttpContextAccessor.HttpContext.Session.GetString("SessionImage");}
+                
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../dist/img/@HttpContextAccessor.HttpContext.Session.GetString("SessionImage")" class="user-image img-circle elevation-2" alt="User Image">
+                        <img src="@img" class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline">@HttpContextAccessor.HttpContext.Session.GetString("SessionNome")</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="../../dist/img/@HttpContextAccessor.HttpContext.Session.GetString("SessionImage")" class="img-circle elevation-2" alt="User Image">
+                            <img src="@img" class="user-image img-circle elevation-2" alt="User Image">
                             <p>
                                 @HttpContextAccessor.HttpContext.Session.GetString("SessionNome")
                             </p>
@@ -923,48 +924,50 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
-                        @*<div class="col-sm-6">
-                        <h1>Inicio</h1>
-                        </div>
-                        <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
-                        </ol>
-                        </div>*@
+                    @*<div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1>Inicio</h1>
                     </div>
+                    <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                    </ol>
+                    </div>
+                    </div>*@
                 </div>
                 <!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-header">
-                        @*<h4 class="card-title">Title</h4>*@
-                        <h4 class="card-title">@ViewData["TitlePage"]</h4>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                <i class="fas fa-times"></i>
-                            </button>
+                <!-- container-fluid -->
+                <div class="container-fluid">
+                    <!-- Default box -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @*<h4 class="card-title">Title</h4>*@
+                            <h5 class="card-title">@ViewData["TitlePage"]</h5>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
+                        <div class="card-body">
+                            @RenderBody()
+                        </div>
+                        <!-- /.card-body -->
+                        @*<div class="card-footer">
+                        Footer
+                        </div>*@
+                        <!-- /.card-footer-->
                     </div>
-                    <div class="card-body">
-                        @RenderBody()
-                    </div>
-                    <!-- /.card-body -->
-                    @*<div class="card-footer">
-                    Footer
-                    </div>*@
-                    <!-- /.card-footer-->
-                </div>
-                <!-- /.card -->
-
+                    <!-- /.card -->
+                </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>
@@ -1006,6 +1009,12 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
     <!-- Page specific script -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
     <script>
         $(function () {
             $("#Table1").DataTable({

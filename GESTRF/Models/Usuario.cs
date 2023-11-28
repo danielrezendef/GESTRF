@@ -8,6 +8,8 @@
         public string Senha { get; set; }
         public string Email { get; set; }
         public string Perfil { get; set; }
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
+        public IFormFile Foto { get; set; }
+
     }
 }

@@ -13,7 +13,6 @@ namespace GESTRF
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)
         {
-
         }
 
         public Contexto()
@@ -33,7 +32,10 @@ namespace GESTRF
             {
                 x.Ignore(y => y.Alteracao);
             });
-
+            builder.Entity<Usuario>(x =>
+            {
+                x.Ignore(y => y.Foto);
+            });
             //builder.Entity<Usuario>(x =>
             //{
             //    x.Property(y => y.Nome).HasMaxLength(50).IsRequired();

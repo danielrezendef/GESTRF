@@ -3,47 +3,39 @@
     ViewData["Title"] = "Create";
     ViewData["TitlePage"] = "Novo";
 }
-<form asp-controller="Usuario" asp-action="Create" method="post">
-    <div class="col-md-6">
-        <div class="form-group">
-
-            <div class="input-group mb-3">
+<form asp-controller="Usuario" asp-action="Create" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                     <input name="Nome" type="text" class="form-control" placeholder="Nome" required autofocus>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="input-group mb-3">
+            <!-- /.form-group -->
+            <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-at"></i></span>
                     <input name="Username" type="text" class="form-control" placeholder="Username" required autofocus>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="input-group mb-3">
+            <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
                     <input name="Senha" type="password" class="form-control" placeholder="Senha" required autofocus>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="input-group mb-3">
+            <!-- /.form-group -->
+            <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     <input name="Email" type="text" class="form-control" placeholder="Email" required autofocus>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="input-group mb-3">
+            <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user-cog"></i></span>
                     <select name="Perfil" class="form-control select2" style="width: 100%;" required autofocus required autofocus>
@@ -53,30 +45,34 @@
                     </select>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-image"></i></span>
-                    <input name="Image" type="text" class="form-control" placeholder="Image">
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-3">
+            <div class="form-group">
                 <div class="input-group mb-2">
                     <button type="submit" class="btn btn-block btn-success">Criar </button>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6">
+            <div class="form-group">
                 <a asp-action="Index" type="button" class="btn btn-block btn-secondary "><i class="fa-solid fa-circle-left"></i> Voltar </a>
             </div>
         </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="../../dist/img/user.jpg"
+                         alt="User profile picture">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input name="Foto" type="file" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
     </div>
+    <!-- /.row -->
 </form>
-

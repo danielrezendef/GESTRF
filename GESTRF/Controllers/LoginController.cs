@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace GESTRF.Controllers
 {
@@ -46,6 +47,16 @@ namespace GESTRF.Controllers
             {
                 int usuarioId = usuario.UsuarioId;
                 string nome = usuario.Nome;
+                string? base64img = string.Empty;
+                if (usuario.Image != null)
+                {
+                    base64img = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(usuario.Image));
+                }
+                else
+                    base64img = string.Format(@"../../dist/img/user.jpg");
+
+               // < img src = "../../dist/img/user.jpg" class="user-image img-circle elevation-2" alt="User Image">
+
                 List<Claim> direitosAcesso = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,usuarioId.ToString()),
@@ -63,9 +74,12 @@ namespace GESTRF.Controllers
                         ExpiresUtc = DateTime.Now.AddHours(1)
                     });
 
+
+
+
                 HttpContext.Session.SetString("SessionNome", usuario.Nome);
                 HttpContext.Session.SetString("SessionEmail", usuario.Email);
-                HttpContext.Session.SetString("SessionImage", usuario.Image);
+                HttpContext.Session.SetString("SessionImage", base64img);
                 HttpContext.Session.SetString("SessionPerfil", usuario.Perfil);
 
 
