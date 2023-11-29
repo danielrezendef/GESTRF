@@ -5,6 +5,13 @@
 }
 <div class="col-md-4">
     <p>
+        <img class="user-image img-circle elevation-2"
+             src="@ViewBag.ImageDataUrl"
+             width="130"
+             height="122"
+             alt="User profile picture">
+    </p>
+    <p>
         @Html.DisplayFor(model => model.UsuarioId)
     </p>
     <p>
@@ -21,9 +28,6 @@
     </p>
     <p>
         @Html.DisplayFor(model => model.Perfil)
-    </p>
-    <p>
-        <img src="@ViewBag.ImageDataUrl" width="100%" />
     </p>
 </div>
 <div class="col-md-2">
