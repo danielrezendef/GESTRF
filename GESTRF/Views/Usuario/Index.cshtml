@@ -35,9 +35,9 @@
                             <a asp-action="Details" asp-route-id="@item.UsuarioId" button type="button" class="btn btn-default btn-sm" data-container="body" title="Detalhar">
                                 <i class="fas fa-info"></i>
                             </a>
-                            <button type="button" class="btn btn-default btn-sm" data-container="body" title="Excluir">
+                            <a asp-action="Delete" asp-route-id="@item.UsuarioId" button type="button" class="btn btn-default btn-sm" data-container="body" title="Excluir">
                                 <i class="far fa-trash-alt"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 }

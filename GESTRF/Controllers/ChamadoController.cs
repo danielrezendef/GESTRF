@@ -19,7 +19,6 @@ namespace GESTRF.Controllers
             _context = context;
         }
 
-        // GET: Estudantes
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

@@ -46,10 +46,6 @@ namespace GESTRF.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-
-
-
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

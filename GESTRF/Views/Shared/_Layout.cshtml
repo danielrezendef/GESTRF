@@ -145,17 +145,17 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
                 </li>*@
-                @{var img = HttpContextAccessor.HttpContext.Session.GetString("SessionImage");}
+                @{var imgPerfil = HttpContextAccessor.HttpContext.Session.GetString("SessionImage");}
                 
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="@img" class="user-image img-circle elevation-2" alt="User Image">
+                        <img src="@imgPerfil" class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline">@HttpContextAccessor.HttpContext.Session.GetString("SessionNome")</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="@img" class="user-image img-circle elevation-2" alt="User Image">
+                            <img src="@imgPerfil" class="user-image img-circle elevation-2" alt="User Image">
                             <p>
                                 @HttpContextAccessor.HttpContext.Session.GetString("SessionNome")
                             </p>
